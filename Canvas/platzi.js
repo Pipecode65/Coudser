@@ -13,22 +13,20 @@ var vaca = {
 
 fondo.imagen = new Image();
 fondo.imagen.src = fondo.url
-fondo.imagen.addEventListener("load", cargarFondo);
+fondo.imagen.addEventListener("load", cargarImagenes);
 
 vaca.imagen = new Image();
 vaca.imagen.src = vaca.url
-vaca.imagen.addEventListener("load", cargarVacas);
+vaca.imagen.addEventListener("load", cargarImagenes);
 
-function cargarFondo()
+function cargarImagenes()
 {
   fondo.cargaOK = true;
   dibujar();
-}
-function cargarVacas()
-{
   vaca.cargaOK = true;
   dibujar();
 }
+
 function dibujar()
 {
   if (fondo.cargaOK)
@@ -37,7 +35,15 @@ function dibujar()
   }
   if (vaca.cargaOK)
   {
-    papel.drawImage(vaca.imagen, 100, 100);
+    var cantidad = aleatorio(1, 50);
+    for (var i = 0; i < cantidad; i++)
+    {
+      var x = aleatorio(0, 7);
+      var y = aleatorio(0, 7);
+      var x = x * 60;
+      var y = y * 60;
+      papel.drawImage(vaca.imagen, x, y);
+    }
   }
 }
 
